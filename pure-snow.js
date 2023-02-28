@@ -108,7 +108,7 @@ function spawnSnowCSS(snowDensity = 200) {
           transform: translate(${randomXEnd}vw, ${randomYoyoY}vh) scale(${randomScale});
         }
         95% {
-          opacity: 100%;
+          opacity: ${opacity};
         }
         100% {
           transform: translate(${randomXEndYoyo}vw, ${pageHeightVh - 2}vh) scale(${randomScale});
