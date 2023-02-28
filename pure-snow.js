@@ -1,7 +1,6 @@
 let snowflakesCount = 200; // Snowflake count, can be overwritten by attrs
 let baseCss = ``;
 
-
 // set global attributes
 if (typeof SNOWFLAKES_COUNT !== 'undefined') {
   snowflakesCount = SNOWFLAKES_COUNT;
@@ -47,6 +46,15 @@ function spawnSnow(snowDensity = 200) {
     board.className = "snowflake";
 
     document.getElementById('snow').appendChild(board);
+  }
+}
+
+// Remove snowflakes
+function clearSnow() {
+  let snowFlakes = document.getElementById('snow').children;
+
+  for (let snowFlake of snowFlakes) {
+    snowFlake.remove();
   }
 }
 
@@ -116,6 +124,11 @@ createSnow = function () {
   spawnSnow(snowflakesCount);
 };
 
+// Reset snow when we resize the page
+resetSnow = function() {
+  clearSnow();
+  createSnow();
+};
 
 // export createSnow function if using node or CommonJS environment
 if (typeof module !== 'undefined') {
@@ -126,6 +139,7 @@ if (typeof module !== 'undefined') {
 }
 else {
   window.onload = createSnow;
+  window.onresize = resetSnow;
 }
 
 // TODO add option to easily re-render scenery. For example when window resizes.
